@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/mailgun/glogutils.png)](https://travis-ci.org/mailgun/glogutils)
+
 Rationale
 ---------
 Google logging library is a wonderful lib:
