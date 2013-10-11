@@ -35,7 +35,7 @@ func startLogsCleanup(period time.Duration) error {
 					glog.Infof("Start cleaning up the logs")
 					err := glogutils.CleanupLogs()
 					if err != nil {
-						glog.Errorf("Failed to clean up the logs: %s, shutting down goroutine", err)
+						glog.Errorf("Failed to clean up the logs: %s", err)
 						return
 					}
 				}
