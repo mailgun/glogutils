@@ -18,6 +18,34 @@ and another one to understand if google logging logs to dir:
 glogutils.LogDir() // returns "" if log dir was not specified
 ```
 
+Example
+-------
+
+```go
+// This function starts cleaning up after glog library, periodically removing logs
+// that are no longer used
+func startLogsCleanup(period time.Duration) error {
+	if glogutils.LogDir() != "" {
+		glog.Infof("Starting log cleanup go routine with period: %s", period)
+		go func() {
+			t := time.Tick(period)
+			for {
+				select {
+				case <-t:
+					glog.Infof("Start cleaning up the logs")
+					err := glogutils.CleanupLogs()
+					if err != nil {
+						glog.Errorf("Failed to clean up the logs: %s, shutting down goroutine", err)
+						return
+					}
+				}
+			}
+		}()
+	}
+	return nil
+}
+```
+
 License
 -------
 
