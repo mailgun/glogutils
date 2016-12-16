@@ -7,4 +7,3 @@ install:
 
 script:
  - go test -v ./...
- - gocov test -exclude-goroot | gocov report
